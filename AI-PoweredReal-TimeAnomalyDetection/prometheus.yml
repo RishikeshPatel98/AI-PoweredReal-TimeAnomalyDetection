@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 2s
+
+scrape_configs:
+  - job_name: 'detector_if'
+    static_configs:
+      - targets: ['detector_if:8000']
+
+  - job_name: 'detector_ae'
+    static_configs:
+      - targets: ['detector_ae:8001']

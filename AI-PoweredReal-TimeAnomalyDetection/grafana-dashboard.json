@@ -1,0 +1,86 @@
+{
+  "title": "IF vs AE Comparison",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Latency (s)",
+      "targets": [
+        {
+          "expr": "detector_latency_seconds"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Throughput (msg/s)",
+      "targets": [
+        {
+          "expr": "detector_throughput_mps"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Anomalies (last 5m)",
+      "targets": [
+        {
+          "expr": "sum(increase(detector_anomalies_total[5m])) by (model)"
+        }
+      ],
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      }
+    },
+    {
+      "type": "stat",
+      "title": "TP vs FP (last 5m)",
+      "targets": [
+        {
+          "expr": "sum(increase(detector_true_positives_total[5m])) by (model)"
+        },
+        {
+          "expr": "sum(increase(detector_false_positives_total[5m])) by (model)"
+        }
+      ],
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "AE reconstruction error (MSE)",
+      "targets": [
+        {
+          "expr": "detector_reconstruction_error{model=\"ae\"}"
+        }
+      ],
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      }
+    }
+  ],
+  "schemaVersion": 38,
+  "refresh": "5s"
+}
